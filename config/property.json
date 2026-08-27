@@ -1,0 +1,18 @@
+{
+  "property": {
+    "name": "BaseKC"
+  },
+  "units": [
+    {
+      "id": "unit-a",
+      "ssid": "SSID_FOR_UNIT_A",
+      "hospitableListingId": "TBD-UNIT-A-LISTING-ID"
+    },
+    {
+      "id": "unit-b",
+      "ssid": "SSID_FOR_UNIT_B",
+      "hospitableListingId": "TBD-UNIT-B-LISTING-ID"
+    }
+  ],
+  "wholePropertyListingIds": ["a8f2503f-1876-48a8-86a4-222a4bed809d"]
+}
