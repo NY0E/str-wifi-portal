@@ -48,25 +48,6 @@ export default async function Page({
           Verify your reservation and accept the house rules to get online.
         </p>
 
-        <section
-          aria-label="House rules"
-          className="mt-6 rounded-xl border border-white/10 bg-white/[0.03] p-4"
-        >
-          <ol className="flex flex-col gap-3">
-            {houseRules.map((rule, i) => (
-              <li key={i} className="flex gap-3 text-sm leading-6 text-foreground/80">
-                <span className="font-display shrink-0 text-base font-bold text-seafoam">
-                  {i + 1}
-                </span>
-                <span>{rule}</span>
-              </li>
-            ))}
-          </ol>
-          <p className="mt-4 border-t border-white/10 pt-3 text-xs leading-5 text-foreground/50">
-            {houseRulesFootnote}
-          </p>
-        </section>
-
         <div className="mt-6">
           <PortalForm
             mac={mac}
@@ -74,6 +55,8 @@ export default async function Page({
             ssid={ssid}
             originalUrl={originalUrl}
             guideVideoUrl={guideVideoUrl()}
+            houseRules={houseRules}
+            houseRulesFootnote={houseRulesFootnote}
           />
         </div>
       </div>

@@ -15,12 +15,16 @@ export function PortalForm({
   ssid,
   originalUrl,
   guideVideoUrl,
+  houseRules,
+  houseRulesFootnote,
 }: {
   mac: string;
   apMac: string | null;
   ssid: string;
   originalUrl: string | null;
   guideVideoUrl: string | null;
+  houseRules: string[];
+  houseRulesFootnote: string;
 }) {
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -168,6 +172,25 @@ export function PortalForm({
           />
         </div>
       </fieldset>
+
+      <section
+        aria-label="House rules"
+        className="rounded-xl border border-white/10 bg-white/[0.03] p-4"
+      >
+        <ol className="flex flex-col gap-3">
+          {houseRules.map((rule, i) => (
+            <li key={i} className="flex gap-3 text-sm leading-6 text-foreground/80">
+              <span className="font-display shrink-0 text-base font-bold text-seafoam">
+                {i + 1}
+              </span>
+              <span>{rule}</span>
+            </li>
+          ))}
+        </ol>
+        <p className="mt-4 border-t border-white/10 pt-3 text-xs leading-5 text-foreground/50">
+          {houseRulesFootnote}
+        </p>
+      </section>
 
       <fieldset className="flex flex-col gap-4 rounded-xl border border-white/10 bg-white/[0.03] p-4">
         <legend className="px-1 text-xs font-semibold tracking-wide text-seafoam uppercase">
