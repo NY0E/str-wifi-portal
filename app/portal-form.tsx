@@ -19,7 +19,9 @@ export function PortalForm({
 }) {
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [doorCode, setDoorCode] = useState("");
+  const [reservationLastName, setReservationLastName] = useState("");
+  const [reservationPhoneLast4, setReservationPhoneLast4] = useState("");
+  const [signerName, setSignerName] = useState("");
   const [email, setEmail] = useState("");
   const [agreedToRules, setAgreedToRules] = useState(false);
   const [marketingOptIn, setMarketingOptIn] = useState(false);
@@ -43,7 +45,9 @@ export function PortalForm({
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          doorCode,
+          reservationLastName,
+          reservationPhoneLast4,
+          signerName,
           email,
           agreedToRules,
           marketingOptIn,
@@ -91,39 +95,79 @@ export function PortalForm({
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-      <div>
-        <label htmlFor="doorCode" className="block text-sm font-medium">
-          Door code
-        </label>
-        <input
-          id="doorCode"
-          name="doorCode"
-          inputMode="numeric"
-          pattern="\d{4}"
-          maxLength={4}
-          required
-          value={doorCode}
-          onChange={(e) => setDoorCode(e.target.value.replace(/\D/g, ""))}
-          className="mt-1 w-32 rounded-md border border-zinc-300 px-3 py-2 text-lg tracking-widest"
-          placeholder="0000"
-        />
-      </div>
+      <fieldset className="flex flex-col gap-4 rounded-lg border border-zinc-200 p-4">
+        <legend className="px-1 text-sm font-medium text-zinc-700">
+          Verify your reservation
+        </legend>
 
-      <div>
-        <label htmlFor="email" className="block text-sm font-medium">
-          Email address
-        </label>
-        <input
-          id="email"
-          name="email"
-          type="email"
-          required
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="mt-1 w-full rounded-md border border-zinc-300 px-3 py-2"
-          placeholder="you@example.com"
-        />
-      </div>
+        <div>
+          <label htmlFor="reservationLastName" className="block text-sm font-medium">
+            Last name on the reservation
+          </label>
+          <input
+            id="reservationLastName"
+            name="reservationLastName"
+            required
+            value={reservationLastName}
+            onChange={(e) => setReservationLastName(e.target.value)}
+            className="mt-1 w-full rounded-md border border-zinc-300 px-3 py-2"
+            placeholder="Smith"
+          />
+        </div>
+
+        <div>
+          <label htmlFor="reservationPhoneLast4" className="block text-sm font-medium">
+            Last 4 digits of the phone number used to book
+          </label>
+          <input
+            id="reservationPhoneLast4"
+            name="reservationPhoneLast4"
+            inputMode="numeric"
+            pattern="\d{4}"
+            maxLength={4}
+            required
+            value={reservationPhoneLast4}
+            onChange={(e) => setReservationPhoneLast4(e.target.value.replace(/\D/g, ""))}
+            className="mt-1 w-32 rounded-md border border-zinc-300 px-3 py-2 text-lg tracking-widest"
+            placeholder="0000"
+          />
+        </div>
+      </fieldset>
+
+      <fieldset className="flex flex-col gap-4 rounded-lg border border-zinc-200 p-4">
+        <legend className="px-1 text-sm font-medium text-zinc-700">Your signature</legend>
+
+        <div>
+          <label htmlFor="signerName" className="block text-sm font-medium">
+            Your name
+          </label>
+          <input
+            id="signerName"
+            name="signerName"
+            required
+            value={signerName}
+            onChange={(e) => setSignerName(e.target.value)}
+            className="mt-1 w-full rounded-md border border-zinc-300 px-3 py-2"
+            placeholder="Jamie Smith"
+          />
+        </div>
+
+        <div>
+          <label htmlFor="email" className="block text-sm font-medium">
+            Your email address
+          </label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="mt-1 w-full rounded-md border border-zinc-300 px-3 py-2"
+            placeholder="you@example.com"
+          />
+        </div>
+      </fieldset>
 
       <label className="flex items-start gap-2 text-sm">
         <input

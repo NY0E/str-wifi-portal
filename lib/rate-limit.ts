@@ -4,7 +4,8 @@ const WINDOW_MINUTES = 15;
 const MAX_ATTEMPTS_PER_WINDOW = 10;
 
 /**
- * A 4-digit door code is only 10,000 combinations. This throttles repeated
+ * A last-4-digits phone match is still guessable (10,000 combinations) once
+ * an attacker knows the reservation's last name. This throttles repeated
  * guesses per (IP, MAC) pair using a small attempt-log table — intentionally
  * minimal, not a full fraud-prevention system.
  */
@@ -19,7 +20,7 @@ export async function checkRateLimit({
   const since = new Date(Date.now() - WINDOW_MINUTES * 60_000).toISOString();
 
   const { count, error } = await db
-    .from("door_code_attempts")
+    .from("auth_attempts")
     .select("id", { count: "exact", head: true })
     .gte("created_at", since)
     .or(
@@ -49,7 +50,7 @@ export async function recordAttempt({
   succeeded: boolean;
 }): Promise<void> {
   const db = supabaseAdmin();
-  await db.from("door_code_attempts").insert({
+  await db.from("auth_attempts").insert({
     ip,
     mac,
     ssid,

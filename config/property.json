@@ -6,12 +6,12 @@
     {
       "id": "unit-a",
       "ssid": "SSID_FOR_UNIT_A",
-      "hospitableListingId": "TBD-UNIT-A-LISTING-ID"
+      "hospitableListingId": "0263be13-cb78-4e86-9c75-ce5ebaf8e234"
     },
     {
       "id": "unit-b",
       "ssid": "SSID_FOR_UNIT_B",
-      "hospitableListingId": "TBD-UNIT-B-LISTING-ID"
+      "hospitableListingId": "f0964d06-e07e-4716-9b5f-38525837d452"
     }
   ],
   "wholePropertyListingIds": ["a8f2503f-1876-48a8-86a4-222a4bed809d"]
