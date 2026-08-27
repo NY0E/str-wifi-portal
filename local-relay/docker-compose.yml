@@ -1,0 +1,22 @@
+services:
+  homeassistant:
+    image: ghcr.io/home-assistant/home-assistant:stable
+    container_name: homeassistant
+    restart: unless-stopped
+    # Host networking is Home Assistant's own recommendation for the
+    # Container install — needed for local device discovery, and it's what
+    # lets the UniFi integration and the webhook automation work smoothly.
+    # Linux only (this box, not a Mac/Windows Docker Desktop host).
+    network_mode: host
+    volumes:
+      - ./homeassistant-config:/config
+      - /etc/localtime:/etc/localtime:ro
+
+  redirector:
+    image: caddy:2-alpine
+    container_name: wifi-redirector
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro

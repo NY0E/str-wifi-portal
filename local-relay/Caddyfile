@@ -1,0 +1,8 @@
+# Plain-HTTP redirector for the UDR7 hotspot's IPv4-only "external server
+# host" field. No TLS here on purpose — a bare IP can't hold a trusted
+# certificate, so this hop stays HTTP and immediately bounces the guest to
+# the real HTTPS portal, preserving the full path and query string
+# (id/ap/t/url/ssid).
+:80 {
+	redir https://wifi.basekc.com{uri} 302
+}

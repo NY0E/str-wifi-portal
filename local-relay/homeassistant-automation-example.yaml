@@ -1,0 +1,28 @@
+# Example automation — paste into Home Assistant (Settings > Automations >
+# Edit in YAML), then fill in the two REPLACE_ values. This is what
+# HOME_ASSISTANT_WEBHOOK_URL (in the main app's env vars) actually calls.
+#
+# Payload sent by lib/unifi.ts: {"mac": "...", "ap_mac": "..." | null, "minutes": number | null}
+# plus an "X-Webhook-Secret" header if HOME_ASSISTANT_WEBHOOK_SECRET is set.
+#
+# NOT yet verified against a live Home Assistant instance — the webhook
+# trigger's exact header-access syntax (trigger.headers) should be
+# double-checked once this is actually running, same as everything else
+# in this project that needed live verification.
+
+alias: "WiFi Portal - Authorize Guest"
+description: "Called by the str-wifi-portal Vercel app to grant a guest's MAC network access."
+trigger:
+  - platform: webhook
+    webhook_id: REPLACE_WITH_A_LONG_RANDOM_STRING # e.g. `openssl rand -hex 32`
+    local_only: false # must be reachable from the internet, not just the LAN
+condition:
+  - condition: template
+    value_template: "{{ trigger.json is defined and trigger.json.mac is defined }}"
+action:
+  - service: unifi_insights.authorize_guest
+    data:
+      site_id: REPLACE_WITH_YOUR_UNIFI_SITE_ID
+      client_id: "{{ trigger.json.mac }}"
+      duration_minutes: "{{ trigger.json.minutes | default(480) }}"
+mode: queued
