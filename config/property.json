@@ -7,12 +7,12 @@
   "units": [
     {
       "id": "unit-a",
-      "ssid": "Edgevale4",
+      "ssid": "BaseKC14104",
       "hospitableListingId": "0263be13-cb78-4e86-9c75-ce5ebaf8e234"
     },
     {
       "id": "unit-b",
-      "ssid": "Edgevale6",
+      "ssid": "BaseKC14106",
       "hospitableListingId": "f0964d06-e07e-4716-9b5f-38525837d452"
     }
   ],
