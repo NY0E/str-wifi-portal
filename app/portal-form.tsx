@@ -14,11 +14,13 @@ export function PortalForm({
   apMac,
   ssid,
   originalUrl,
+  guideVideoUrl,
 }: {
   mac: string;
   apMac: string | null;
   ssid: string;
   originalUrl: string | null;
+  guideVideoUrl: string | null;
 }) {
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -95,18 +97,32 @@ export function PortalForm({
           </svg>
         </div>
         <h2 className="font-display mt-4 text-lg font-semibold text-foreground">
-          You&apos;re connected
+          You&apos;re connected! 🎉
         </h2>
-        <p className="mt-2 text-sm text-foreground/70">
-          Enjoy your stay! {redirectUrl ? "Redirecting you now…" : ""}
-        </p>
+        {guideVideoUrl && (
+          <p className="mt-2 text-sm text-foreground/70">
+            New here? Quick how-tos for the locks, appliances, and everything else{" "}
+            <a
+              href={guideVideoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-seafoam underline underline-offset-4"
+            >
+              on the BaseKC YouTube
+            </a>
+            .
+          </p>
+        )}
         {redirectUrl && (
-          <a
-            href={redirectUrl}
-            className="mt-4 inline-block text-sm font-medium text-seafoam underline underline-offset-4"
-          >
-            Continue browsing
-          </a>
+          <>
+            <p className="mt-4 text-xs text-foreground/50">Redirecting you now…</p>
+            <a
+              href={redirectUrl}
+              className="mt-1 inline-block text-sm font-medium text-seafoam underline underline-offset-4"
+            >
+              Continue browsing
+            </a>
+          </>
         )}
       </div>
     );

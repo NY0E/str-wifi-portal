@@ -1,7 +1,8 @@
 {
   "property": {
     "name": "BaseKC",
-    "tagline": "Your Kansas City Home Base"
+    "tagline": "Your Kansas City Home Base",
+    "guideVideoUrl": "https://www.youtube.com/@BaseKC/shorts"
   },
   "units": [
     {

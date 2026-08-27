@@ -1,6 +1,6 @@
 import Image from "next/image";
-import { resolveUnitBySsid, propertyName, propertyTagline } from "@/lib/config";
-import { houseRulesText } from "@/content/house-rules";
+import { resolveUnitBySsid, propertyName, propertyTagline, guideVideoUrl } from "@/lib/config";
+import { houseRules, houseRulesFootnote } from "@/content/house-rules";
 import { PortalForm } from "@/app/portal-form";
 
 type SearchParams = { [key: string]: string | string[] | undefined };
@@ -50,13 +50,31 @@ export default async function Page({
 
         <section
           aria-label="House rules"
-          className="mt-6 max-h-72 overflow-y-auto rounded-xl border border-white/10 bg-white/[0.03] p-4 text-sm leading-6 whitespace-pre-wrap text-foreground/80"
+          className="mt-6 rounded-xl border border-white/10 bg-white/[0.03] p-4"
         >
-          {houseRulesText}
+          <ol className="flex flex-col gap-3">
+            {houseRules.map((rule, i) => (
+              <li key={i} className="flex gap-3 text-sm leading-6 text-foreground/80">
+                <span className="font-display shrink-0 text-base font-bold text-seafoam">
+                  {i + 1}
+                </span>
+                <span>{rule}</span>
+              </li>
+            ))}
+          </ol>
+          <p className="mt-4 border-t border-white/10 pt-3 text-xs leading-5 text-foreground/50">
+            {houseRulesFootnote}
+          </p>
         </section>
 
         <div className="mt-6">
-          <PortalForm mac={mac} apMac={apMac} ssid={ssid} originalUrl={originalUrl} />
+          <PortalForm
+            mac={mac}
+            apMac={apMac}
+            ssid={ssid}
+            originalUrl={originalUrl}
+            guideVideoUrl={guideVideoUrl()}
+          />
         </div>
       </div>
 

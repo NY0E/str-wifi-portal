@@ -7,7 +7,7 @@ export type Unit = {
 };
 
 export type PropertyConfig = {
-  property: { name: string; tagline?: string };
+  property: { name: string; tagline?: string; guideVideoUrl?: string };
   units: Unit[];
   wholePropertyListingIds: string[];
 };
@@ -33,4 +33,8 @@ export function propertyName(): string {
 
 export function propertyTagline(): string | null {
   return config.property.tagline ?? null;
+}
+
+export function guideVideoUrl(): string | null {
+  return config.property.guideVideoUrl ?? null;
 }
