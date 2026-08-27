@@ -195,6 +195,27 @@ export function PortalForm({
         </p>
       </section>
 
+      <label className="flex items-start gap-2.5 text-sm text-foreground/80">
+        <input
+          type="checkbox"
+          required
+          checked={agreedToRules}
+          onChange={(e) => setAgreedToRules(e.target.checked)}
+          className="mt-1 h-4 w-4 accent-seafoam"
+        />
+        I have read and agree to the house rules.
+      </label>
+
+      <label className="flex items-start gap-2.5 text-sm text-foreground/80">
+        <input
+          type="checkbox"
+          checked={marketingOptIn}
+          onChange={(e) => setMarketingOptIn(e.target.checked)}
+          className="mt-1 h-4 w-4 accent-seafoam"
+        />
+        Send me discounts/promos/info for future stays.
+      </label>
+
       <fieldset className="flex flex-col gap-4 rounded-xl border border-white/10 bg-white/[0.03] p-4">
         <legend className="px-1 text-xs font-semibold tracking-wide text-seafoam uppercase">
           Your signature
@@ -231,27 +252,6 @@ export function PortalForm({
           />
         </div>
       </fieldset>
-
-      <label className="flex items-start gap-2.5 text-sm text-foreground/80">
-        <input
-          type="checkbox"
-          required
-          checked={agreedToRules}
-          onChange={(e) => setAgreedToRules(e.target.checked)}
-          className="mt-1 h-4 w-4 accent-seafoam"
-        />
-        I have read and agree to the house rules.
-      </label>
-
-      <label className="flex items-start gap-2.5 text-sm text-foreground/80">
-        <input
-          type="checkbox"
-          checked={marketingOptIn}
-          onChange={(e) => setMarketingOptIn(e.target.checked)}
-          className="mt-1 h-4 w-4 accent-seafoam"
-        />
-        Send me discounts and promos for future stays.
-      </label>
 
       {status === "error" && errorMessage && (
         <p role="alert" className="text-sm text-red-400">
