@@ -7,7 +7,7 @@ export type Unit = {
 };
 
 export type PropertyConfig = {
-  property: { name: string };
+  property: { name: string; tagline?: string };
   units: Unit[];
   wholePropertyListingIds: string[];
 };
@@ -29,4 +29,8 @@ export function isWholePropertyListing(listingId: string): boolean {
 
 export function propertyName(): string {
   return config.property.name;
+}
+
+export function propertyTagline(): string | null {
+  return config.property.tagline ?? null;
 }

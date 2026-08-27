@@ -1,0 +1,20 @@
+<svg width="620" height="155" viewBox="0 0 620 155" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="pg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#17D4C0"/><stop offset="100%" stop-color="#0FA898"/>
+    </linearGradient>
+    <linearGradient id="kg" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#17D4C0"/><stop offset="100%" stop-color="#0FA898"/>
+    </linearGradient>
+  </defs>
+  <path d="M65,12 C42,12 24,30 24,53 C24,69 33,82 45,92 C52,97 58,101 62,104 C63,105 64,105 65,105 C66,105 67,105 68,104 C72,101 78,97 85,92 C97,82 106,69 106,53 C106,30 88,12 65,12Z" fill="url(#pg)"/>
+  <circle cx="65" cy="50" r="27" fill="#07100F" opacity="0.28"/>
+  <rect x="54" y="51" width="22" height="16" rx="1" fill="#EEF9F8"/>
+  <polygon points="50,52 65,37 80,52" fill="#EEF9F8"/>
+  <rect x="60" y="57" width="10" height="10" rx="1" fill="url(#pg)"/>
+  <rect x="71" y="42" width="5" height="8" rx="1" fill="#EEF9F8"/>
+  <rect x="55" y="54" width="6" height="5" rx="0.5" fill="url(#pg)" opacity="0.55"/>
+  <text x="168" y="90" font-family="'Rajdhani',sans-serif" font-weight="700" font-size="80" fill="#EEF9F8" letter-spacing="-2">BASE<tspan fill="url(#kg)">KC</tspan></text>
+  <text x="170" y="114" font-family="'DM Sans',sans-serif" font-weight="500" font-size="11" fill="#3ABFB0" letter-spacing="3">YOUR KANSAS CITY HOME BASE</text>
+  <line x1="168" y1="99" x2="612" y2="99" stroke="#0F3030" stroke-width="1"/>
+</svg>

@@ -1,4 +1,5 @@
-import { resolveUnitBySsid, propertyName } from "@/lib/config";
+import Image from "next/image";
+import { resolveUnitBySsid, propertyName, propertyTagline } from "@/lib/config";
 import { houseRulesText } from "@/content/house-rules";
 import { PortalForm } from "@/app/portal-form";
 
@@ -36,31 +37,77 @@ export default async function Page({
   }
 
   return (
-    <main className="mx-auto flex min-h-screen max-w-2xl flex-col gap-8 px-6 py-12">
-      <header>
-        <h1 className="text-2xl font-semibold">{propertyName()} Guest WiFi</h1>
-        <p className="mt-1 text-sm text-zinc-600">
-          Enter your door code to accept the house rules and connect to WiFi.
+    <main className="mx-auto flex min-h-screen w-full max-w-lg flex-col items-center px-5 py-10 sm:py-14">
+      <Header />
+
+      <div className="mt-8 w-full rounded-2xl border border-seafoam/15 bg-deep-night p-5 shadow-[0_0_40px_-15px_rgba(23,212,192,0.35)] sm:p-7">
+        <h1 className="font-display text-xl font-semibold tracking-wide text-foreground sm:text-2xl">
+          Connect to Guest WiFi
+        </h1>
+        <p className="mt-1.5 text-sm leading-6 text-foreground/60">
+          Verify your reservation and accept the house rules to get online.
         </p>
-      </header>
 
-      <section
-        aria-label="House rules"
-        className="max-h-96 overflow-y-auto rounded-lg border border-zinc-200 bg-zinc-50 p-4 text-sm leading-6 whitespace-pre-wrap"
-      >
-        {houseRulesText}
-      </section>
+        <section
+          aria-label="House rules"
+          className="mt-6 max-h-72 overflow-y-auto rounded-xl border border-white/10 bg-white/[0.03] p-4 text-sm leading-6 whitespace-pre-wrap text-foreground/80"
+        >
+          {houseRulesText}
+        </section>
 
-      <PortalForm mac={mac} apMac={apMac} ssid={ssid} originalUrl={originalUrl} />
+        <div className="mt-6">
+          <PortalForm mac={mac} apMac={apMac} ssid={ssid} originalUrl={originalUrl} />
+        </div>
+      </div>
+
+      <Footer />
     </main>
+  );
+}
+
+function Header() {
+  const tagline = propertyTagline();
+  return (
+    <header className="flex flex-col items-center text-center">
+      <Image
+        src="/brand/basekc-logo-dark.svg"
+        alt={propertyName()}
+        width={310}
+        height={78}
+        priority
+        className="h-auto w-48 sm:w-56"
+      />
+      {tagline && (
+        <p className="mt-2 text-xs font-medium tracking-[0.2em] text-seafoam uppercase">
+          {tagline}
+        </p>
+      )}
+    </header>
+  );
+}
+
+function Footer() {
+  return (
+    <p className="mt-8 text-center text-xs text-foreground/35">
+      Having trouble? Contact your host.
+    </p>
   );
 }
 
 function ConfigError({ message }: { message: string }) {
   return (
     <main className="mx-auto flex min-h-screen max-w-md flex-col items-center justify-center px-6 py-12 text-center">
-      <h1 className="text-xl font-semibold">Unable to connect</h1>
-      <p className="mt-2 text-sm text-zinc-600">{message}</p>
+      <Image
+        src="/brand/basekc-logo-dark.svg"
+        alt="BaseKC"
+        width={310}
+        height={78}
+        className="h-auto w-44"
+      />
+      <h1 className="font-display mt-8 text-xl font-semibold text-foreground">
+        Unable to connect
+      </h1>
+      <p className="mt-2 text-sm text-foreground/60">{message}</p>
     </main>
   );
 }

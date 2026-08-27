@@ -6,6 +6,9 @@ type Status = "idle" | "submitting" | "success" | "error";
 
 const AUTO_REDIRECT_DELAY_MS = 3000;
 
+const inputClass =
+  "mt-1 w-full rounded-lg border border-transparent bg-canvas px-3 py-2 text-night placeholder:text-night/40 outline-none focus:border-seafoam focus:ring-2 focus:ring-seafoam/40";
+
 export function PortalForm({
   mac,
   apMac,
@@ -76,15 +79,31 @@ export function PortalForm({
 
   if (status === "success") {
     return (
-      <div className="rounded-lg border border-green-200 bg-green-50 p-6 text-center">
-        <h2 className="text-lg font-semibold text-green-900">You&apos;re connected</h2>
-        <p className="mt-2 text-sm text-green-800">
+      <div className="rounded-xl border border-seafoam/30 bg-seafoam/10 p-6 text-center">
+        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-seafoam text-night">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={3}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="h-6 w-6"
+          >
+            <path d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        <h2 className="font-display mt-4 text-lg font-semibold text-foreground">
+          You&apos;re connected
+        </h2>
+        <p className="mt-2 text-sm text-foreground/70">
           Enjoy your stay! {redirectUrl ? "Redirecting you now…" : ""}
         </p>
         {redirectUrl && (
           <a
             href={redirectUrl}
-            className="mt-4 inline-block text-sm font-medium text-green-900 underline"
+            className="mt-4 inline-block text-sm font-medium text-seafoam underline underline-offset-4"
           >
             Continue browsing
           </a>
@@ -95,13 +114,13 @@ export function PortalForm({
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-      <fieldset className="flex flex-col gap-4 rounded-lg border border-zinc-200 p-4">
-        <legend className="px-1 text-sm font-medium text-zinc-700">
+      <fieldset className="flex flex-col gap-4 rounded-xl border border-white/10 bg-white/[0.03] p-4">
+        <legend className="px-1 text-xs font-semibold tracking-wide text-seafoam uppercase">
           Verify your reservation
         </legend>
 
         <div>
-          <label htmlFor="reservationLastName" className="block text-sm font-medium">
+          <label htmlFor="reservationLastName" className="block text-sm font-medium text-foreground/80">
             Last name on the reservation
           </label>
           <input
@@ -110,13 +129,13 @@ export function PortalForm({
             required
             value={reservationLastName}
             onChange={(e) => setReservationLastName(e.target.value)}
-            className="mt-1 w-full rounded-md border border-zinc-300 px-3 py-2"
+            className={inputClass}
             placeholder="Smith"
           />
         </div>
 
         <div>
-          <label htmlFor="reservationPhoneLast4" className="block text-sm font-medium">
+          <label htmlFor="reservationPhoneLast4" className="block text-sm font-medium text-foreground/80">
             Last 4 digits of the phone number used to book
           </label>
           <input
@@ -128,17 +147,19 @@ export function PortalForm({
             required
             value={reservationPhoneLast4}
             onChange={(e) => setReservationPhoneLast4(e.target.value.replace(/\D/g, ""))}
-            className="mt-1 w-32 rounded-md border border-zinc-300 px-3 py-2 text-lg tracking-widest"
+            className={`${inputClass} w-28 text-center text-lg tracking-widest`}
             placeholder="0000"
           />
         </div>
       </fieldset>
 
-      <fieldset className="flex flex-col gap-4 rounded-lg border border-zinc-200 p-4">
-        <legend className="px-1 text-sm font-medium text-zinc-700">Your signature</legend>
+      <fieldset className="flex flex-col gap-4 rounded-xl border border-white/10 bg-white/[0.03] p-4">
+        <legend className="px-1 text-xs font-semibold tracking-wide text-seafoam uppercase">
+          Your signature
+        </legend>
 
         <div>
-          <label htmlFor="signerName" className="block text-sm font-medium">
+          <label htmlFor="signerName" className="block text-sm font-medium text-foreground/80">
             Your name
           </label>
           <input
@@ -147,13 +168,13 @@ export function PortalForm({
             required
             value={signerName}
             onChange={(e) => setSignerName(e.target.value)}
-            className="mt-1 w-full rounded-md border border-zinc-300 px-3 py-2"
+            className={inputClass}
             placeholder="Jamie Smith"
           />
         </div>
 
         <div>
-          <label htmlFor="email" className="block text-sm font-medium">
+          <label htmlFor="email" className="block text-sm font-medium text-foreground/80">
             Your email address
           </label>
           <input
@@ -163,35 +184,35 @@ export function PortalForm({
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="mt-1 w-full rounded-md border border-zinc-300 px-3 py-2"
+            className={inputClass}
             placeholder="you@example.com"
           />
         </div>
       </fieldset>
 
-      <label className="flex items-start gap-2 text-sm">
+      <label className="flex items-start gap-2.5 text-sm text-foreground/80">
         <input
           type="checkbox"
           required
           checked={agreedToRules}
           onChange={(e) => setAgreedToRules(e.target.checked)}
-          className="mt-1"
+          className="mt-1 h-4 w-4 accent-seafoam"
         />
         I have read and agree to the house rules.
       </label>
 
-      <label className="flex items-start gap-2 text-sm">
+      <label className="flex items-start gap-2.5 text-sm text-foreground/80">
         <input
           type="checkbox"
           checked={marketingOptIn}
           onChange={(e) => setMarketingOptIn(e.target.checked)}
-          className="mt-1"
+          className="mt-1 h-4 w-4 accent-seafoam"
         />
         Send me discounts and promos for future stays.
       </label>
 
       {status === "error" && errorMessage && (
-        <p role="alert" className="text-sm text-red-700">
+        <p role="alert" className="text-sm text-red-400">
           {errorMessage}
         </p>
       )}
@@ -199,7 +220,7 @@ export function PortalForm({
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="rounded-md bg-black px-4 py-2 text-sm font-medium text-white disabled:opacity-50"
+        className="font-display rounded-lg bg-gradient-to-b from-seafoam to-seafoam-dark px-4 py-2.5 text-sm font-bold tracking-wide text-night uppercase transition-opacity hover:opacity-90 disabled:opacity-50"
       >
         {status === "submitting" ? "Connecting…" : "Connect to WiFi"}
       </button>
