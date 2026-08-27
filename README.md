@@ -31,6 +31,8 @@ Built with Next.js (App Router) on Vercel, and Supabase for storage.
 
 See `.env.example`. Required at runtime: `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `HOSPITABLE_API_KEY`, `HOME_ASSISTANT_WEBHOOK_URL`, `ADMIN_USERNAME`, `ADMIN_PASSWORD`.
 
+**After adding or changing env vars in Vercel, you must trigger a new deployment** — Vercel doesn't apply env var changes to deployments that already exist, including whatever is currently live in production. Either push a commit, or redeploy from the Vercel dashboard.
+
 ## Admin lookup
 
 `/admin` (HTTP Basic Auth via `ADMIN_USERNAME`/`ADMIN_PASSWORD`) lets you search acceptance records by reservation code, name, or email — for dispute documentation.
