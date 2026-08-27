@@ -177,7 +177,10 @@ export function PortalForm({
         aria-label="House rules"
         className="rounded-xl border border-white/10 bg-white/[0.03] p-4"
       >
-        <ol className="flex flex-col gap-3">
+        <h2 className="px-1 text-xs font-semibold tracking-wide text-seafoam uppercase">
+          Rules
+        </h2>
+        <ol className="mt-4 flex flex-col gap-3">
           {houseRules.map((rule, i) => (
             <li key={i} className="flex gap-3 text-sm leading-6 text-foreground/80">
               <span className="font-display shrink-0 text-base font-bold text-seafoam">
@@ -187,7 +190,7 @@ export function PortalForm({
             </li>
           ))}
         </ol>
-        <p className="mt-4 border-t border-white/10 pt-3 text-xs leading-5 text-foreground/50">
+        <p className="mt-4 border-t border-white/10 pt-3 text-sm leading-6 text-foreground/80">
           {houseRulesFootnote}
         </p>
       </section>
